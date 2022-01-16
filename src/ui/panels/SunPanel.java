@@ -4,10 +4,10 @@ import ui.DysonGUI;
 
 import java.awt.*;
 
-public class Sun extends CelestialPanel {
+public class SunPanel extends CelestialPanel {
     private static Image IMAGE; // stub
 
-    public Sun(DysonGUI gui) {
+    public SunPanel(DysonGUI gui) {
         super(gui);
         //stub
     }

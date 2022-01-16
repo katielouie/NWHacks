@@ -12,7 +12,7 @@ public class Earth {
     private static int ROCKET_CAPACITY = 100;
     private static int POD_CAPACITY = 50;
 
-    public void generateEarth() {
+    public static void generateEarth() {
         earth = new Earth();
     }
 

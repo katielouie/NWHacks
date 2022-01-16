@@ -19,7 +19,7 @@ public class Mercury {
     private long rockets;
     private long receptors;
 
-    public void generateMercury() {
+    public static void generateMercury() {
         mercury = new Mercury();
     }
 

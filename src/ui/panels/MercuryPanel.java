@@ -4,11 +4,12 @@ import ui.DysonGUI;
 
 import java.awt.*;
 
-public class Earth extends CelestialPanel {
+public class MercuryPanel extends CelestialPanel {
     private static Image IMAGE; // stub
 
-    public Earth(DysonGUI gui) {
+    public MercuryPanel(DysonGUI gui) {
         super(gui);
+
     }
 
     @Override

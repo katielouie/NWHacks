@@ -6,7 +6,7 @@ public class Sun {
     private long transmittersToEarth;
     private long transmittersToMercury;
 
-    public void generateSun() {
+    public static void generateSun() {
         sun = new Sun();
     }
 
