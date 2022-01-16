@@ -3,7 +3,7 @@ package ui.panels;
 import ui.DysonGUI;
 
 public abstract class CelestialPanel {
-    private final DysonGUI gui;
+    protected final DysonGUI gui;
 
     public CelestialPanel(DysonGUI gui) {
         this.gui = gui;
