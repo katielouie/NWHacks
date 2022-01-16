@@ -98,6 +98,7 @@ public abstract class Infrastructure {
 
     public void repair(long repairPoints) {
         long repaired = (repairPoints + repairProgress) / labourRepairCost;
+        // stub
     }
 
     public void repair() {
