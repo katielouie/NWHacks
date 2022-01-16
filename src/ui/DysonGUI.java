@@ -4,6 +4,7 @@ import model.Earth;
 import model.Mercury;
 import model.Sun;
 import ui.panels.CelestialPanel;
+import ui.panels.EarthPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,16 +15,24 @@ public class DysonGUI extends JFrame {
     private ArrayList<CelestialPanel> panels;
     private Toolbar toolbar;
 
-
     public DysonGUI() {
         super("Dyson Game");
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setUIFont (new javax.swing.plaf.FontUIResource("Serif",Font.PLAIN,20));
-        generatePlanets();
-        toolbar = new Toolbar(this, getToolbarValues());
-        toolbar.setBackground(Color.black);
-        this.add(toolbar, BorderLayout.NORTH);
+        this.setBackground(Color.black);
         setVisible(true);
+        generatePlanets();
+        initPanels();
+    }
+
+
+    //initializes Panels
+    public void initPanels() {
+        toolbar = new Toolbar(this, getToolbarValues());
+        this.add(toolbar, BorderLayout.NORTH);
+        EarthPanel earthPanel = new EarthPanel(this);
+        this.add(earthPanel);
     }
 
     //Generates Planets
@@ -50,7 +59,7 @@ public class DysonGUI extends JFrame {
             Object key = keys.nextElement();
             Object value = UIManager.get (key);
             if (value instanceof javax.swing.plaf.FontUIResource)
-                UIManager.put(key, f);
+                UIManager.put (key, f);
         }
     }
 }
