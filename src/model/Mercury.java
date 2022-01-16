@@ -4,11 +4,11 @@ public class Mercury {
     public static Mercury mercury;
     private long resources;
     private long equipment;
-    private long mechanics;
-    private long excavators;
-    private long manufacturers;
-    private long solarPanels;
-    private long launchers;
+    private Mechanics mechanics;
+    private Excavators excavators;
+    private Manufacturers manufacturers;
+    private Panels panels;
+    private Launchers launchers;
     private long rockets;
     private long receptors;
 
@@ -19,11 +19,11 @@ public class Mercury {
     private Mercury() {
         resources = 0;
         equipment = 0;
-        mechanics = 0;
-        excavators = 0;
-        manufacturers = 0;
-        solarPanels = 0;
-        launchers = 0;
+        mechanics = new Mechanics();
+        excavators = new Excavators();
+        manufacturers = new Manufacturers();
+        panels = new Panels();
+        launchers = new Launchers();
         rockets = 0;
         receptors = 0;
     }
@@ -48,6 +48,10 @@ public class Mercury {
         //stub
     }
 
+    public long getEnergyUse() {
+        return 0; //stub
+    }
+
     public long getResources() {
         return resources;
     }
@@ -56,23 +60,31 @@ public class Mercury {
         return equipment;
     }
 
-    public long getMechanics() {
+    public void setResources(long resources) {
+        this.resources = resources;
+    }
+
+    public void setEquipment(long equipment) {
+        this.equipment = equipment;
+    }
+
+    public Mechanics getMechanics() {
         return mechanics;
     }
 
-    public long getExcavators() {
+    public Excavators getExcavators() {
         return excavators;
     }
 
-    public long getManufacturers() {
+    public Manufacturers getManufacturers() {
         return manufacturers;
     }
 
-    public long getSolarPanels() {
-        return solarPanels;
+    public Panels getPanels() {
+        return panels;
     }
 
-    public long getLaunchers() {
+    public Launchers getLaunchers() {
         return launchers;
     }
 
@@ -82,9 +94,5 @@ public class Mercury {
 
     public long getReceptors() {
         return receptors;
-    }
-
-    public long getEnergyUse() {
-        return 0; //stub
     }
 }
