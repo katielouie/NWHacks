@@ -1,5 +1,7 @@
 package model;
 
+import model.infrastructure.*;
+
 public class Mercury {
     public static Mercury mercury;
     private long resources;

@@ -1,4 +1,6 @@
-package model;
+package model.infrastructure;
+
+import model.Mercury;
 
 import java.util.Random;
 
