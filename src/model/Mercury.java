@@ -9,8 +9,9 @@ public class Mercury {
     private Mechanics mechanics;
     private Excavators excavators;
     private Manufacturers manufacturers;
-    private Panels panels;
+    private SolarPanels solarPanels;
     private Launchers launchers;
+    private long spacePanels;
     private long rockets;
     private long receptors;
 
@@ -24,29 +25,43 @@ public class Mercury {
         mechanics = new Mechanics();
         excavators = new Excavators();
         manufacturers = new Manufacturers();
-        panels = new Panels();
+        solarPanels = new SolarPanels();
         launchers = new Launchers();
+        spacePanels = 0;
         rockets = 0;
         receptors = 0;
     }
 
-    public void buildExcavator() {
-        //stub
+    public void buildMechanic(long n) {
+        mechanics.build(n);
     }
 
-    public void buildManufacturer() {
-        //stub
+    public void buildExcavator(long n) {
+        excavators.build(n);
     }
 
-    public void buildSolarPanels() {
-        //stub
+    public void buildManufacturer(long n) {
+        manufacturers.build(n);
     }
 
-    public void buildLauncher() {
-        //stub
+    public void buildSolarPanels(long n) {
+        solarPanels.build(n);
+    }
+
+    public void buildLauncher(long n) {
+        launchers.build(n);
     }
 
     public void launchPanels() {
+        long launched = launchers.getActive() * Launchers.LAUNCH_RATE;
+        if (launched > spacePanels) {
+            launched = spacePanels;
+        }
+        spacePanels -= launched;
+        Sun.sun.addPanels(launched);
+    }
+
+    public void repairInfrastructure() {
         //stub
     }
 
@@ -70,6 +85,14 @@ public class Mercury {
         this.equipment = equipment;
     }
 
+    public void useResources(long resources) {
+        this.resources -= resources;
+    }
+
+    public void useEquipment(long equipment) {
+        this.equipment -= equipment;
+    }
+
     public Mechanics getMechanics() {
         return mechanics;
     }
@@ -82,12 +105,16 @@ public class Mercury {
         return manufacturers;
     }
 
-    public Panels getPanels() {
-        return panels;
+    public SolarPanels getSolarPanels() {
+        return solarPanels;
     }
 
     public Launchers getLaunchers() {
         return launchers;
+    }
+
+    public long getSpacePanels() {
+        return spacePanels;
     }
 
     public long getRockets() {

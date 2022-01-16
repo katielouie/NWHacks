@@ -11,6 +11,7 @@ public abstract class Infrastructure {
     protected long active;
     protected long inactive;
     protected long broken;
+    protected int repairProgress;
 
     // Equipment and material costs to build one unit
     private final int resourceBuildCost;
@@ -23,6 +24,7 @@ public abstract class Infrastructure {
     // Equipment and material costs to repair one unit
     private final int materialRepairCost;
     private final int equipmentRepairCost;
+    private final int labourRepairCost;
 
     // Energy use per unit
     private final int activeEnergyUse;
@@ -30,18 +32,20 @@ public abstract class Infrastructure {
 
     public Infrastructure(int resourceBuildCost, int equipmentBuildCost,
                           int activeBreakdownChance, int inactiveBreakdownChance,
-                          int materialRepairCost, int equipmentRepairCost,
+                          int materialRepairCost, int equipmentRepairCost, int labourRepairCost,
                           int activeEnergyUse, int inactiveEnergyUse) {
         maxActive = null;
         active = 0;
         inactive = 0;
         broken = 0;
+        repairProgress = 0;
         this.resourceBuildCost = resourceBuildCost;
         this.equipmentBuildCost = equipmentBuildCost;
         this.activeBreakdownChance = activeBreakdownChance;
         this.inactiveBreakdownChance = inactiveBreakdownChance;
         this.materialRepairCost = materialRepairCost;
         this.equipmentRepairCost = equipmentRepairCost;
+        this.labourRepairCost = labourRepairCost;
         this.activeEnergyUse = activeEnergyUse;
         this.inactiveEnergyUse = inactiveEnergyUse;
         randomGenerator = new Random();
@@ -87,8 +91,8 @@ public abstract class Infrastructure {
         if (usedResources > mercury.getResources() || usedEquipment > mercury.getEquipment()) {
             throw new IllegalArgumentException("Insufficient resources");
         } else {
-            mercury.setResources(mercury.getResources() - usedResources);
-            mercury.setEquipment(mercury.getEquipment() - usedEquipment);
+            mercury.useResources(usedResources);
+            mercury.useEquipment(usedEquipment);
         }
     }
 
@@ -138,5 +142,13 @@ public abstract class Infrastructure {
 
     public int getInactiveEnergyUse() {
         return inactiveEnergyUse;
+    }
+
+    public long getActive() {
+        return active;
+    }
+
+    public long getInactive() {
+        return inactive;
     }
 }

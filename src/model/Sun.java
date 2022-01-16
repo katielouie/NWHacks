@@ -16,6 +16,10 @@ public class Sun {
         transmittersToMercury = 0;
     }
 
+    public void addPanels(long panels) {
+        this.panels += panels;
+    }
+
     public long getPanels() {
         return panels;
     }
