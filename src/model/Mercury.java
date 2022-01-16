@@ -47,7 +47,7 @@ public class Mercury {
     }
 
     public void repairInfrastructure() {
-        long repairPoints = mechanics.getActive() * Mechanics.REPAIR_RATE;
+        long repairPoints = mechanics.getActive() * Mechanics.WORK_RATE;
         long totalNeeded = getRepairNeeded();
         Long portion = null;
         if (totalNeeded > repairPoints) {

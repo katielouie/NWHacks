@@ -4,6 +4,7 @@ public class Excavators extends Infrastructure {
     // Equipment and material costs to build one excavator
     private static final int RESOURCE_BUILD_COST = 10;
     private static final int EQUIPMENT_BUILD_COST = 10;
+    private static final int LABOUR_BUILD_COST = 30;
 
     // Chance per million per day to breakdown
     private static final int ACTIVE_BREAKDOWN_CHANCE = 100;
@@ -19,7 +20,7 @@ public class Excavators extends Infrastructure {
     private static final int INACTIVE_ENERGY_USE = 0;
 
     public Excavators() {
-        super(RESOURCE_BUILD_COST, EQUIPMENT_BUILD_COST,
+        super(RESOURCE_BUILD_COST, EQUIPMENT_BUILD_COST, LABOUR_BUILD_COST,
                 ACTIVE_BREAKDOWN_CHANCE, INACTIVE_BREAKDOWN_CHANCE,
                 RESOURCE_REPAIR_COST, EQUIPMENT_REPAIR_COST, LABOUR_REPAIR_COST,
                 ACTIVE_ENERGY_USE, INACTIVE_ENERGY_USE);

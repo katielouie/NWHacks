@@ -12,10 +12,13 @@ public abstract class Infrastructure {
     protected long inactive;
     protected long broken;
     protected int repairProgress;
+    protected int buildProgress;
+    protected long building;
 
     // Equipment and material costs to build one unit
     private final int resourceBuildCost;
     private final int equipmentBuildCost;
+    private final int labourBuildCost;
 
     // Chance per million per day to breakdown
     private final int activeBreakdownChance;
@@ -30,7 +33,7 @@ public abstract class Infrastructure {
     private final int activeEnergyUse;
     private final int inactiveEnergyUse;
 
-    public Infrastructure(int resourceBuildCost, int equipmentBuildCost,
+    public Infrastructure(int resourceBuildCost, int equipmentBuildCost, int labourBuildCost,
                           int activeBreakdownChance, int inactiveBreakdownChance,
                           int materialRepairCost, int equipmentRepairCost, int labourRepairCost,
                           int activeEnergyUse, int inactiveEnergyUse) {
@@ -39,8 +42,10 @@ public abstract class Infrastructure {
         inactive = 0;
         broken = 0;
         repairProgress = 0;
+        buildProgress = 0;
         this.resourceBuildCost = resourceBuildCost;
         this.equipmentBuildCost = equipmentBuildCost;
+        this.labourBuildCost = labourBuildCost;
         this.activeBreakdownChance = activeBreakdownChance;
         this.inactiveBreakdownChance = inactiveBreakdownChance;
         this.materialRepairCost = materialRepairCost;
@@ -93,6 +98,7 @@ public abstract class Infrastructure {
         } else {
             mercury.useResources(usedResources);
             mercury.useEquipment(usedEquipment);
+            building += num;
         }
     }
 
@@ -101,6 +107,7 @@ public abstract class Infrastructure {
         // stub
     }
 
+    //
     public void repair() {
         repairProgress = 0;
         inactive += broken;
