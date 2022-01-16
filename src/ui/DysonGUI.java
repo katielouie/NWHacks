@@ -19,11 +19,11 @@ public class DysonGUI extends JFrame {
         super("Dyson Game");
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setUIFont (new javax.swing.plaf.FontUIResource("Serif",Font.PLAIN,20));
-        this.setBackground(Color.black);
-        setVisible(true);
         generatePlanets();
         toolbar = new Toolbar(this, getToolbarValues());
+        toolbar.setBackground(Color.black);
         this.add(toolbar, BorderLayout.NORTH);
+        setVisible(true);
     }
 
     //Generates Planets
@@ -50,7 +50,7 @@ public class DysonGUI extends JFrame {
             Object key = keys.nextElement();
             Object value = UIManager.get (key);
             if (value instanceof javax.swing.plaf.FontUIResource)
-                UIManager.put (key, f);
+                UIManager.put(key, f);
         }
     }
 }
