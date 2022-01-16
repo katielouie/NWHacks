@@ -37,6 +37,12 @@ public class Mercury {
         receptors = 0;
     }
 
+    // Sets infrastructure to active constrained by user-specified maxes, energy production,
+    // and resource/equipment stockpiles
+    public void setActiveInfrastructure() {
+        // stub
+    }
+
     public void launchPanels() {
         long launched = launchers.getActive() * Launchers.LAUNCH_RATE;
         if (launched > spacePanels) {
@@ -46,12 +52,12 @@ public class Mercury {
         Sun.sun.addPanels(launched);
     }
 
-    public void repairInfrastructure() {
-        long repairPoints = mechanics.getActive() * Mechanics.WORK_RATE;
+    public void repairAndBuild() {
+        long workPoints = mechanics.getActive() * Mechanics.WORK_RATE;
         long totalNeeded = getRepairNeeded();
         Long portion = null;
-        if (totalNeeded > repairPoints) {
-            portion = repairPoints / infrastructures.size();
+        if (totalNeeded > workPoints) {
+            portion = workPoints / infrastructures.size();
         }
         short i = 0;
         for (Infrastructure infrastructure : infrastructures) {
@@ -59,7 +65,7 @@ public class Mercury {
                 infrastructure.repair();
             } else {
                 long amount;
-                if (i < repairPoints % infrastructures.size()) {
+                if (i < workPoints % infrastructures.size()) {
                     amount = portion + 1;
                 } else {
                     amount = portion;
@@ -68,6 +74,15 @@ public class Mercury {
             }
             i++;
         }
+        workPoints -= totalNeeded;
+        if (workPoints > 0) {
+            build(workPoints);
+        }
+    }
+
+    // Uses work points to progress building prioritizing those first in the infrastructure list
+    private void build(long workPoints) {
+        // stub
     }
 
     public long getRepairNeeded() {

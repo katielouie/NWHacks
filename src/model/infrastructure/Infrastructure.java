@@ -181,4 +181,8 @@ public abstract class Infrastructure {
     public long getInactive() {
         return inactive;
     }
+
+    public int getLabourBuildCost() {
+        return labourBuildCost;
+    }
 }
