@@ -16,8 +16,6 @@ public class Mercury {
     private final Launchers launchers;
     private final ArrayList<Infrastructure> infrastructures;
     private long spacePanels;
-    private long rockets;
-    private long receptors;
 
     public static void generateMercury() {
         mercury = new Mercury();
@@ -33,8 +31,6 @@ public class Mercury {
         launchers = new Launchers();
         infrastructures = new ArrayList<>(Arrays.asList(mechanics, solarPanels, excavators, manufacturers, launchers));
         spacePanels = 0;
-        rockets = 0;
-        receptors = 0;
     }
 
     // Sets infrastructure to active constrained by user-specified maxes, energy production,
@@ -82,13 +78,29 @@ public class Mercury {
 
     // Uses work points to progress building prioritizing those first in the infrastructure list
     private void build(long workPoints) {
-        // stub
+        for (Infrastructure infrastructure : infrastructures) {
+            long needed = infrastructure.getBuildNeeded();
+            if (needed > workPoints) {
+                infrastructure.doBuild(workPoints);
+                return;
+            } else {
+                infrastructure.doBuild(needed);
+            }
+        }
     }
 
     public long getRepairNeeded() {
         long totalNeeded = 0;
         for (Infrastructure infrastructure : infrastructures) {
             totalNeeded += infrastructure.getRepairNeeded();
+        }
+        return totalNeeded;
+    }
+
+    public long getBuildNeeded() {
+        long totalNeeded = 0;
+        for (Infrastructure infrastructure : infrastructures) {
+            totalNeeded += infrastructure.getBuildNeeded();
         }
         return totalNeeded;
     }
@@ -141,6 +153,18 @@ public class Mercury {
         this.equipment -= equipment;
     }
 
+    public void addResources(long resources) {
+        this.resources += resources;
+    }
+
+    public void addEquipment(long equipment) {
+        this.equipment += equipment;
+    }
+
+    public void addMechanics(long n) {
+        mechanics.addMechanics(n);
+    }
+
     public Mechanics getMechanics() {
         return mechanics;
     }
@@ -163,13 +187,5 @@ public class Mercury {
 
     public long getSpacePanels() {
         return spacePanels;
-    }
-
-    public long getRockets() {
-        return rockets;
-    }
-
-    public long getReceptors() {
-        return receptors;
     }
 }

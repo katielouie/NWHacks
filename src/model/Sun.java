@@ -2,33 +2,37 @@ package model;
 
 public class Sun {
     public static Sun sun;
-    private long panels;
-    private long transmittersToEarth;
-    private long transmittersToMercury;
+    private long panelsToEarth;
+    private long panelsToMercury;
 
     public static void generateSun() {
         sun = new Sun();
     }
 
     private Sun() {
-        panels = 0;
-        transmittersToEarth = 0;
-        transmittersToMercury = 0;
+        panelsToEarth = 0;
+        panelsToMercury = 0;
     }
 
     public void addPanels(long panels) {
-        this.panels += panels;
+        panelsToEarth += panels;
     }
 
-    public long getPanels() {
-        return panels;
+    public void switchToEarth(long panels) {
+        panelsToMercury -= panels;
+        panelsToEarth += panels;
     }
 
-    public long getTransmittersToEarth() {
-        return transmittersToEarth;
+    public void switchToMercury(long panels) {
+        panelsToMercury -= panels;
+        panelsToEarth += panels;
     }
 
-    public long getTransmittersToMercury() {
-        return transmittersToMercury;
+    public long getPanelsToEarth() {
+        return panelsToEarth;
+    }
+
+    public long getPanelsToMercury() {
+        return panelsToMercury;
     }
 }

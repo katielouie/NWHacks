@@ -28,4 +28,8 @@ public class Mechanics extends Infrastructure {
                 RESOURCE_REPAIR_COST, EQUIPMENT_REPAIR_COST, LABOUR_REPAIR_COST,
                 ACTIVE_ENERGY_USE, INACTIVE_ENERGY_USE);
     }
+
+    public void addMechanics(long n) {
+        inactive += n;
+    }
 }

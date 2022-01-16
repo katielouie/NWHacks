@@ -104,18 +104,38 @@ public abstract class Infrastructure {
 
     public void repair(long repairPoints) {
         long repaired = (repairPoints + repairProgress) / labourRepairCost;
-        // stub
+        if (repaired >= broken) {
+            repaired = broken;
+        } else {
+            repairProgress = (int) (repairPoints + repairProgress) % labourRepairCost;
+        }
+        broken -= repaired;
+        inactive += repaired;
     }
 
-    //
     public void repair() {
         repairProgress = 0;
         inactive += broken;
         broken = 0;
     }
 
+    public void doBuild(long points) {
+        long built = (points + buildProgress) / labourBuildCost;
+        if (built >= building) {
+            built = building;
+        } else {
+            buildProgress = (int) (points + buildProgress) % labourBuildCost;
+        }
+        building -= built;
+        inactive += built;
+    }
+
     public long getRepairNeeded() {
         return broken * labourRepairCost - repairProgress;
+    }
+
+    public long getBuildNeeded() {
+        return building * labourBuildCost - buildProgress;
     }
 
     public void setMaxActive(Long maxActive) {
