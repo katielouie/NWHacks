@@ -21,7 +21,7 @@ public abstract class Infrastructure {
     private final int activeBreakdownChance;
     private final int inactiveBreakdownChance;
 
-    // Equipment and material costs to repair one unit
+    // Equipment, material, and labour costs to repair one unit
     private final int materialRepairCost;
     private final int equipmentRepairCost;
     private final int labourRepairCost;
@@ -96,6 +96,20 @@ public abstract class Infrastructure {
         }
     }
 
+    public void repair(long repairPoints) {
+        long repaired = (repairPoints + repairProgress) / labourRepairCost;
+    }
+
+    public void repair() {
+        repairProgress = 0;
+        inactive += broken;
+        broken = 0;
+    }
+
+    public long getRepairNeeded() {
+        return broken * labourRepairCost - repairProgress;
+    }
+
     public void setMaxActive(Long maxActive) {
         this.maxActive = maxActive;
     }
@@ -110,6 +124,10 @@ public abstract class Infrastructure {
 
     public long getBroken() {
         return broken;
+    }
+
+    public int getRepairProgress() {
+        return repairProgress;
     }
 
     public int getResourceBuildCost() {
@@ -134,6 +152,10 @@ public abstract class Infrastructure {
 
     public int getEquipmentRepairCost() {
         return equipmentRepairCost;
+    }
+
+    public int getLabourRepairCost() {
+        return labourRepairCost;
     }
 
     public int getActiveEnergyUse() {

@@ -19,7 +19,7 @@ public class Mechanics extends Infrastructure {
     private static final int INACTIVE_ENERGY_USE = 0;
 
     // Number of repairs performed each day by active mechanics
-    private static final int repairRate = 1;
+    public static final int REPAIR_RATE = 1;
 
     public Mechanics() {
         super(RESOURCE_BUILD_COST, EQUIPMENT_BUILD_COST,
